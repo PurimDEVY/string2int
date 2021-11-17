@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import test.appman.string2int.model.InputRequestDTO;
 import test.appman.string2int.model.IntServiceResponse;
 import test.appman.string2int.service.ParseIntServiceImpl;
 
@@ -23,11 +22,10 @@ public class ParseIntController {
         this.parseIntService = parseIntService;
     }
 
-    @GetMapping("/int/{input}")
-    public @ResponseBody ResponseEntity<IntServiceResponse> parseint(@PathVariable String request ) throws Exception{
-        LOG.info("parseing Integer");
-        LOG.warn("input: " + request);
-        IntServiceResponse response = parseIntService.parseInt(request);
+    @RequestMapping(value = "/int/{input}", method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<IntServiceResponse> parseint(@PathVariable String input ) throws Exception{
+        LOG.info("parseing Integer: "+ input);
+        IntServiceResponse response = parseIntService.parseInt(input);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
