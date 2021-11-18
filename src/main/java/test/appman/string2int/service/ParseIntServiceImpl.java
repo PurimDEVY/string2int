@@ -48,7 +48,6 @@ public class ParseIntServiceImpl implements ParseIntService{
                 degit++;
             }
         }
-        LOG.info("parsing integer to: ",num);
         IntServiceResponse intServiceResponse = new IntServiceResponse(num);
         return intServiceResponse;
     }
